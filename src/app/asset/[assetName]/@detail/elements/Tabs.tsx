@@ -8,7 +8,7 @@ interface TabsProps {
 }
 
 const defaultStyle = "grow-[1] flex justify-center items-center py-1 border-neutral-900 border-b transition-all duration-300";
-const nonSelectedStyle = "text-neutral-100 bg-neutral-800";
+const nonSelectedStyle = "text-neutral-100 bg-neutral-900";
 const selectedStyle = "text-neutral-800 bg-transparent border-b-transparent";
 
 export default function Tabs({ selectedTab, setSelectedTab }: TabsProps) {

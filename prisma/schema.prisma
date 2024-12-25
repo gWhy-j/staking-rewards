@@ -1,0 +1,27 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["driverAdapters", "fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+}
+
+enum QueryType {
+  OVERVIEW  @map("overview")
+  GENERAL   @map("general")
+  RISK      @map("risk")
+  REWARD    @map("reward")
+  MOMENTUM  @map("momentum")
+}
+
+model StakingRewardsQuery {
+    id              Int      @id @default(autoincrement())
+    query_type      QueryType @unique
+    query_data      Json
+    created_at      DateTime @default(now())
+    updated_at      DateTime @updatedAt
+
+    @@map("stakingRewardsQuery")
+}

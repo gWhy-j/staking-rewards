@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { StakingApiClient } from "../api-client";
 import { query } from "./query";
-
+import { QueryType } from "@prisma/client";
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     }
 
     const client = new StakingApiClient();
-    const result = await client.query(query[tab], { slug });
+    const result = await client.query(query[tab], tab.toUpperCase() as QueryType, { slug });
 
     return NextResponse.json(result);
   } catch (error) {

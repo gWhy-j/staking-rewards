@@ -24,7 +24,7 @@ export default function Card({ isLast, data: { label, metrics, metricKey, change
         <div className="flex items-center w-full gap-8">
           <div className="text-neutral-800 font-semibold text-xl min-w-[150px]">
             {formatNumberWithUnit(metrics[VALUE_TYPE.CURRENT]?.value)}
-            <span className="text-neutral-400 text-sm ml-2">{changePercentages?.["24h"] ? `(${formatNumberWithUnit(changePercentages["24h"])})` : ""}</span>
+            <span className="text-neutral-400 text-sm ml-2">{changePercentages?.["24h"] ? `(${formatNumberWithUnit(changePercentages["24h"])}%)` : ""}</span>
           </div>
           <div className="flex flex-col gap-1 w-[150px]">
             <div className="flex flex-col ">

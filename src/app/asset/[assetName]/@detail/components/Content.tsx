@@ -15,9 +15,9 @@ export default function Content({ assetName }: { assetName: string }) {
   }, []);
 
   return (
-    <div className="card-body min-w-[600px] border-t border-neutral-900 flex flex-col">
+    <div className="card-body min-w-[700px] border-t border-neutral-900 flex flex-col">
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <ScrollShadow className="w-[600px] h-[500px]">
+      <ScrollShadow className="w-[700px] h-[500px]">
         <Suspense fallback={<Loading />}>{render && <CardWrapper assetName={assetName} selectedTab={selectedTab} />}</Suspense>
       </ScrollShadow>
     </div>
