@@ -6,14 +6,13 @@ export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
     const slug = searchParams.get("slug");
-    const tab = searchParams.get("tab");
 
-    if (!slug || !tab) {
-      return Response.json({ error: "Slug and tab parameter is required" }, { status: 400 });
+    if (!slug) {
+      return Response.json({ error: "Slug parameter is required" }, { status: 400 });
     }
 
     const client = new StakingApiClient();
-    const result = await client.query(query[tab], { slug });
+    const result = await client.query(query, { slug });
 
     return NextResponse.json(result);
   } catch (error) {

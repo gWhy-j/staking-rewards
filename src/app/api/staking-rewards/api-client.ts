@@ -14,7 +14,11 @@ export class StakingApiClient {
         "Content-Type": "application/json",
         "X-API-KEY": this.apiKey,
       },
+
       body: JSON.stringify({ query: gqlQuery, variables }),
+      next: {
+        revalidate: 3600,
+      },
     });
 
     if (!response.ok) {

@@ -20,6 +20,36 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#tooltip-amp {
+  --tw-ring-color: #171717 !important;
+}
+
+.tooltip::after {
+  border-top: 8px solid #d4d4d8;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  height: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: -4px;
+  width: 0;
+}
+
+.tooltip-amp::after {
+  border-top: 8px solid #171717;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  height: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: -4px;
+  width: 0;
+}
+
 /* <div class="navbar_link-text" style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Home</div> */
 
 /* <div class="navbar_link-text is-hover" style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Home</div> */

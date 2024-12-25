@@ -1,24 +1,17 @@
-"use client";
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { Card, CardHeader, CardBody } from "@nextui-org/react";
+import Content from "./components/Content";
 
-export default function Page() {
-  const params = useParams();
-  const assetName = params.assetName as string;
-
-  useQuery({
-    queryKey: ["staking-data", assetName],
-    queryFn: () => fetch(`/api/staking-rewards/staking-data?slug=${assetName}`).then((res) => res.json()),
-  });
+export default async function Page({ params }: { params: Promise<{ assetName: string }> }) {
+  const { assetName } = await params;
 
   return (
-    <Card shadow="none" radius="none" className="border-r border-neutral-500">
+    <Card shadow="none" radius="none" className="border-r border-neutral-900 px-0">
       <CardHeader>
-        <div className="text-2xl font-semibold">Analyze {assetName.toUpperCase()} Staking Data</div>
+        <div className="text-2xl font-semibold px-3">Analyze {assetName.toUpperCase()} Staking Data</div>
       </CardHeader>
-      <CardBody></CardBody>
-      <CardFooter>Footer</CardFooter>
+      <CardBody className="p-0">
+        <Content assetName={assetName} />
+      </CardBody>
     </Card>
   );
 }

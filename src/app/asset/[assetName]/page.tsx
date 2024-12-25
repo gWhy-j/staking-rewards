@@ -1,13 +1,15 @@
 import Image from "next/image";
+import React from "react";
 
-export default function Page({ params }: { params: { assetName: string } }) {
+export default async function Page({ params }: { params: Promise<{ assetName: string }> }) {
+  const { assetName } = await params;
   return (
     <div className="flex-col py-12 px-8 bg-black">
       <div className="flex items-center mb-4 gap-3">
         <div>
-          <Image src={`/${params.assetName}.svg`} alt={params.assetName} width={30} height={40} />
+          <Image src={`/${assetName}.svg`} alt={assetName} width={30} height={40} />
         </div>
-        <div className="text-4xl font-semibold text-white">{params.assetName.toUpperCase()} Staking Analytics</div>
+        <div className="text-4xl font-semibold text-white">{assetName.toUpperCase()} Staking Analytics</div>
       </div>
       <div className="text-neutral-400 text-medium max-w-[1440px]">
         As of today, there are <span className="text-white">{267726}</span> stakers actively staking on the network.
