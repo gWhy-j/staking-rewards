@@ -10,10 +10,9 @@ function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        // With SSR, we usually want to set some default staleTime
-        // above 0 to avoid refetching immediately on the client
-        staleTime: 1000 * 60 * 60 * 24, // 24 hours
-        gcTime: 1000 * 60 * 60 * 24, // 24 hours
+        // 24시간 이내라면 fresh 라고 간주.
+        staleTime: 1000 * 60 * 60 * 24,
+        gcTime: 1000 * 60 * 60 * 24,
       },
     },
   });
@@ -26,12 +25,9 @@ function getQueryClient() {
     // Server: always make a new query client
     return makeQueryClient();
   } else {
-    // Browser: make a new query client if we don't already have one
-    // This is very important, so we don't re-make a new client if React
-    // suspends during the initial render. This may not be needed if we
-    // have a suspense boundary BELOW the creation of the query client
     if (!browserQueryClient) browserQueryClient = makeQueryClient();
 
+    // 브라우저 쿼리 결과를 로컬스토리지에 저장하기 위한 옵션
     const localStoragePersister = createSyncStoragePersister({
       storage: window.localStorage,
     });

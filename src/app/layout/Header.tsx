@@ -18,7 +18,7 @@ export const Header = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href="#" target="_blank" className="text-black hover:text-neutral-700 transition-colors duration-500">
+          <Link href="https://purring-oriole-e2f.notion.site/DApp-Engineer-162a9255fa9b8067bad2e7c3d61299fe?pvs=73" target="_blank" className="text-black hover:text-neutral-700 transition-colors duration-500">
             DOCS
           </Link>
         </NavbarItem>

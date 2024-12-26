@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  redirects: async () => {
+    return [
+      {
+        source: "/",
+        destination: "/asset/sui",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
