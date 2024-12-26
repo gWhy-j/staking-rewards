@@ -11,7 +11,7 @@ export default function ChartWrapper({ assetName }: { assetName: string }) {
   const { data, isLoading } = useQuery({
     queryKey: ["performance-chart", assetName],
     queryFn: () =>
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/staking-rewards/performance-chart?slug=${assetName}`)
+      fetch(`/api/staking-rewards/performance-chart?slug=${assetName}`)
         .then((res) => res.json())
         .then((data) => data.data?.assets[0]?.metrics),
   });
