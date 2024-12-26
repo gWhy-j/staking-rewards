@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: Promise<{ assetName: st
       <CardHeader>
         <div className="text-2xl font-semibold px-3">Analyze {assetName.toUpperCase()} Staking Data</div>
       </CardHeader>
-      <CardBody className="p-0">
+      <CardBody className="p-0 min-w-[700px]">
         <Content assetName={assetName} />
       </CardBody>
     </Card>

@@ -12,7 +12,7 @@ interface CardProps {
 
 export default function Card({ isLast, data: { label, metrics, metricKey, changePercentages, marketPosition } }: CardProps) {
   return (
-    <div className="data-list flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <div className="flex flex-col justify-center w-full h-[5.5rem] px-4 gap-1">
         <div className="text-neutral-500 text-sm font-semibold">
           {label ??
@@ -48,7 +48,7 @@ export default function Card({ isLast, data: { label, metrics, metricKey, change
           </div>
           <div className="range-bar flex-auto pb-1.5 h-full flex px-4 items-end justify-center">
             <div className="relative w-full">
-              <Progress value={marketPosition ?? 0} className="w-full" size="sm" classNames={{ indicator: "bg-neutral-900" }} />
+              <Progress value={marketPosition ?? 0} className="w-full" size="sm" classNames={{ indicator: "bg-neutral-900" }} aria-label="market-position" />
               <span className="absolute left-0 bottom-1.5 -translate-x-1/2 -translate-y-1/2">
                 <div className="tooltip absolute left-1/2 -translate-x-1/2 -bottom-1" />
                 <Avatar isBordered className="w-5 h-5" src={metrics[VALUE_TYPE.MINIMUM]?.logoUrl ?? ""} />

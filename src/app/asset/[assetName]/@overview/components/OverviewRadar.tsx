@@ -1,15 +1,14 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { fetchStakingRewards } from "@/funcs/fetchStakingRewards";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
 
 export default function OverviewRadar({ assetName }: { assetName: string }) {
-  const [render, setRender] = useState(false);
-  const { data } = useQuery({
+  const { data } = useSuspenseQuery({
     queryKey: ["overview", assetName],
-    queryFn: () => fetchStakingRewards(`/api/staking-rewards/overview?slug=${assetName}`),
+    queryFn: () => fetchStakingRewards(`${process.env.NEXT_PUBLIC_API_URL}/api/staking-rewards/overview?slug=${assetName}`),
   });
 
   const chartData = useMemo(() => {
@@ -22,24 +21,20 @@ export default function OverviewRadar({ assetName }: { assetName: string }) {
     }
   }, [data]);
 
-  useEffect(() => {
-    setRender(true);
-  }, []);
-
   return (
-    <div className="card-body min-w-[600px] min-h-[450px]">
-      {render && chartData && (
+    <div className="card-body w-full h-full">
+      {
         <>
-          <ResponsiveContainer width={600} height={500}>
-            <RadarChart cx="50%" cy="50%" outerRadius="90%" data={chartData} defaultShowTooltip={true}>
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData} defaultShowTooltip={true}>
               <PolarGrid />
               <PolarRadiusAxis axisLine={false} tick={false} />
               <Radar dataKey="value" stroke="#000000" fill="#000000" fillOpacity={0.85} />
               <PolarAngleAxis
                 dataKey="label"
-                tick={({ payload, x, y }) => {
+                tick={({ payload, x, y, textAnchor }) => {
                   return (
-                    <text x={x} y={y} textAnchor={"middle"} fontSize="16" fill="#a3a3a3" fontWeight="600" className="z-30">
+                    <text x={x} y={y} textAnchor={textAnchor} fontSize="14" fill="#a3a3a3" fontWeight="600" className="z-30">
                       {payload.value}
                     </text>
                   );
@@ -48,7 +43,7 @@ export default function OverviewRadar({ assetName }: { assetName: string }) {
             </RadarChart>
           </ResponsiveContainer>
         </>
-      )}
+      }
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default async function Page({ params }: { params: Promise<{ assetName: st
     <div className="flex-col py-12 px-8 bg-black">
       <div className="flex items-center mb-4 gap-3">
         <div>
-          <Image src={`/${assetName}.svg`} alt={assetName} width={30} height={40} />
+          <Image src={`/${assetName}.svg`} alt={assetName} width={30} height={38} />
         </div>
         <div className="text-4xl font-semibold text-white">{assetName.toUpperCase()} Staking Analytics</div>
       </div>
