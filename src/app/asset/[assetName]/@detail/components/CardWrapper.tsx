@@ -1,14 +1,16 @@
 "use client";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchStakingRewards } from "@/funcs/fetchStakingRewards";
 import Card from "../elements/Card";
+import Loading from "../elements/Loading";
+import ClientContent from "@/app/layout/ClientContent";
 
 export default function CardWrapper({ assetName, selectedTab }: { assetName: string; selectedTab: string }) {
-  const { data } = useSuspenseQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["staking-data", assetName, selectedTab],
-    queryFn: () => fetchStakingRewards(`${process.env.NEXT_PUBLIC_API_URL}/api/staking-rewards/staking-data?slug=${assetName}&tab=${selectedTab}`),
+    queryFn: () => fetchStakingRewards(`/api/staking-rewards/staking-data?slug=${assetName}&tab=${selectedTab}`),
   });
 
-  return <>{data && Object.values(data).map((metric, idx) => <Card key={metric.metricKey} isLast={idx === Object.values(data).length - 1} data={metric} />)}</>;
+  return <ClientContent loading={<Loading />}>{isLoading ? <Loading /> : Object.values(data ?? {}).map((metric) => <Card key={metric.metricKey} data={metric} />)}</ClientContent>;
 }

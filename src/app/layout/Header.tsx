@@ -3,10 +3,10 @@ import { Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-or
 
 export const Header = () => {
   return (
-    <Navbar maxWidth="full" isBordered className="border-neutral-900 bg-white">
+    <Navbar maxWidth="full" isBordered className="border-neutral-900 bg-white" shouldHideOnScroll>
       <NavbarBrand>
-        <Image src="/a41_logo.svg" alt="a41-logo" height={20} width={60} />
-        <div className="flex items-center font-semibold text-xl ml-6 gap-2">
+        <Image src="/a41_logo.svg" alt="a41-logo" height={20} width={60} className="hidden sm:block" />
+        <div className="flex items-center font-semibold text-xl sm:ml-6 gap-2">
           <p className="hidden sm:block">DApp Engineer</p>
           <p>전광현</p>
         </div>

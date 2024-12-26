@@ -6,14 +6,13 @@ import { formatNumberWithUnit } from "@/funcs/formatter";
 import Image from "next/image";
 
 interface CardProps {
-  isLast: boolean;
   data: MetricInfo;
 }
 
-export default function Card({ isLast, data: { label, metrics, metricKey, changePercentages, marketPosition } }: CardProps) {
+export default function Card({ data: { label, metrics, metricKey, changePercentages, marketPosition } }: CardProps) {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col justify-center w-full h-[5.5rem] px-4 gap-1">
+      <div className="flex flex-col justify-center w-full h-[6.5rem] px-4 gap-1">
         <div className="text-neutral-500 text-sm font-semibold">
           {label ??
             metricKey
@@ -22,11 +21,11 @@ export default function Card({ isLast, data: { label, metrics, metricKey, change
               .join(" ")}
         </div>
         <div className="flex items-center w-full gap-8">
-          <div className="text-neutral-800 font-semibold text-xl min-w-[150px]">
+          <div className="text-neutral-800 font-semibold text-xl min-w-[10rem]">
             {formatNumberWithUnit(metrics[VALUE_TYPE.CURRENT]?.value)}
             <span className="text-neutral-400 text-sm ml-2">{changePercentages?.["24h"] ? `(${formatNumberWithUnit(changePercentages["24h"])}%)` : ""}</span>
           </div>
-          <div className="flex flex-col gap-1 w-[150px]">
+          <div className="flex-col gap-1 w-[150px] compact:flex hidden">
             <div className="flex flex-col ">
               <div className="flex items-center justify-between">
                 <div className="flex gap-1 items-center">
@@ -83,11 +82,11 @@ export default function Card({ isLast, data: { label, metrics, metricKey, change
           </div>
         </div>
       </div>
-      {!isLast && (
-        <div className="w-full px-2">
-          <Divider className="bg-neutral-400" />
-        </div>
-      )}
+      {/* {!isLast && ( */}
+      <div className="w-full px-2">
+        <Divider className="bg-neutral-400" />
+      </div>
+      {/* )} */}
     </div>
   );
 }

@@ -1,14 +1,19 @@
-import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/react";
-
+import { Card, CardHeader, CardBody } from "@nextui-org/react";
+import ChartWrapper from "./components/ChartWrapper";
+import ClientContent from "@/app/layout/ClientContent";
+import Loading from "./elements/Loading";
 export default async function Page({ params }: { params: Promise<{ assetName: string }> }) {
   const { assetName } = await params;
   return (
-    <Card shadow="none" radius="none" className="border-x border-neutral-900 w-full max-w-[1440px] px-3">
+    <Card shadow="none" radius="none" className="fitWidth:border-l lg:border-r border-neutral-900 w-full lg:max-w-[700px] min-h-[700px]">
       <CardHeader>
-        <div className="text-2xl font-semibold">{assetName.toUpperCase()} Staking Performance Charts</div>
+        <div className="sm:text-2xl text-xl font-semibold">{assetName.toUpperCase()} Staking Performance Charts</div>
       </CardHeader>
-      <CardBody></CardBody>
-      <CardFooter>Footer</CardFooter>
+      <CardBody className="p-0">
+        <ClientContent loading={<Loading />}>
+          <ChartWrapper assetName={assetName} />
+        </ClientContent>
+      </CardBody>
     </Card>
   );
 }

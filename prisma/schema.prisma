@@ -10,6 +10,7 @@ datasource db {
 
 enum QueryType {
   OVERVIEW  @map("overview")
+  PERFORMANCE_CHART @map("performance_chart")
   GENERAL   @map("general")
   RISK      @map("risk")
   REWARD    @map("reward")
