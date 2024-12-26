@@ -2,8 +2,6 @@ import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 import Image from "next/image";
 import OverviewRadar from "./components/OverviewRadar";
-import ClientContent from "@/app/layout/ClientContent";
-import Loading from "./elements/Loading";
 
 export default async function Page({ params }: { params: Promise<{ assetName: string }> }) {
   const { assetName } = await params;
@@ -52,9 +50,7 @@ export default async function Page({ params }: { params: Promise<{ assetName: st
           <div className="sm:text-2xl text-xl font-semibold">Staking Data Overview</div>
         </CardHeader>
         <CardBody className="w-full h-full p-0 flex justify-center items-center">
-          <ClientContent loading={<Loading />}>
-            <OverviewRadar assetName={assetName} />
-          </ClientContent>
+          <OverviewRadar assetName={assetName} />
         </CardBody>
       </Card>
     </div>
