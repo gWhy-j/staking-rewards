@@ -1,7 +1,5 @@
 # Staking Rewards
 
-## Getting Started
-
 ### Install
 
 ```bash
